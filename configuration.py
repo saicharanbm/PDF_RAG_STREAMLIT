@@ -1,0 +1,6 @@
+CHUNK_SIZE = 1000
+CHUNK_OVERLAP = 200
+SIMILARITY_THRESHOLD = 0.7
+MAX_CONTEXT_CHUNKS = 3
+BATCH_SIZE = 20  # Process documents in batches
+QDRANT_TIMEOUT = 120  # Timeout in seconds
