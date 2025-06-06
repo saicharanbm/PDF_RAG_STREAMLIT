@@ -305,22 +305,28 @@ def get_chat_response(query, collection_name, vector_store):
         # Enhanced system prompt
         SYSTEM_PROMPT = f"""You are a helpful AI assistant that answers questions based on the provided PDF document context.
 
+IMPORTANT INSTRUCTIONS:
+1. FIRST, check if the answer exists in the provided context below
+2. If the answer IS in the context: Answer based on the context and include page references
+3. If the answer is NOT in the context: Clearly state that the information is not in the document, then provide a short answer using your general knowledge
+4. If the query is regarding programming always try giving an example for better understanding.
+
 Guidelines:
-1. Answer only based on the provided context
-2. If the answer isn't in the context, say so clearly
-3. Include page references when possible
-4. Be concise but comprehensive
-5. If you're uncertain, acknowledge it
+- Be concise but comprehensive
+- If the query is about programming, always provide examples
+- If you're uncertain about your general knowledge, acknowledge it
 
 Context from the document:
 {context}
+
+Remember: You MUST answer the user's question. If it's not in the document, use your general knowledge!
 """
         
         # Generate response
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash",
-            temperature=0.3,  # Lower temperature for more focused answers
-            max_tokens=2000,
+            temperature=0.5,  # Lower temperature for more focused answers
+             max_tokens=1000,
             timeout=30,
             max_retries=2,
         )
