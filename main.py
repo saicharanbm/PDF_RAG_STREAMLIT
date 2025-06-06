@@ -16,6 +16,49 @@ qdrant_client, embedding_model, qdrant_host, qdrant_api_key = load_clients()
 # --- Main Interface ---
 st.title("🤖 Intelligent PDF Q&A System")
 
+# --- Custom CSS for footer positioning ---
+st.markdown("""
+<style>
+/* Add padding to the main container to make room for footer */
+.main > div {
+    padding-bottom: 120px !important;
+}
+
+/* Style the chat input container */
+.stChatInput {
+    margin-bottom: 30px !important;
+    
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(38, 39, 48, 0.95);
+    color: #fafafa;
+    text-align: center;
+    padding: 15px 0;
+    z-index: 999;
+    border-top: 1px solid #333;
+    backdrop-filter: blur(10px);
+}
+.footer a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Footer with fixed positioning
+st.markdown(
+    '<div class="footer">Built with ❤️ by <a href="https://github.com/saicharanbm/pdf_rag_streamlit" target="_blank">Sai Charan B M</a></div>',
+    unsafe_allow_html=True
+)
+
 # Mode selection
 mode = st.selectbox("Choose an option", ["📤 Upload Document", "💬 Chat with Document"])
 
@@ -119,7 +162,3 @@ elif mode == "💬 Chat with Document":
             if st.button("🗑️ Clear Chat History"):
                 st.session_state.messages = []
                 st.rerun()
-
-# --- Footer ---
-st.markdown("---")
-st.markdown("Built with ❤️ by Sai Charn BM")
