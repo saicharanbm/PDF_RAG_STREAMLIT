@@ -44,7 +44,7 @@ def initialize_clients():
         # Verify connection with a simple operation
         try:
             collections = qdrant_client.get_collections()
-            st.success(f"✅ Connected to Qdrant successfully!")
+            # st.success(f"✅ Connected to Qdrant successfully!")
         except Exception as e:
             st.error(f"❌ Qdrant connection failed: {str(e)}")
             st.info("Please check your QDRANT_URL and QDRANT_API_KEY")
@@ -63,8 +63,8 @@ Error: {str(e)}
             embedding_model = OpenAIEmbeddings(model="text-embedding-3-large")
             # Test embedding creation
             test_embedding = embedding_model.embed_query("test")
-            if len(test_embedding) > 0:
-                st.success("✅ OpenAI embeddings initialized successfully!")
+            # if len(test_embedding) > 0:
+                # st.success("✅ OpenAI embeddings initialized successfully!")
         except Exception as e:
             st.error(f"❌ OpenAI embeddings initialization failed: {str(e)}")
             st.info("Please check your OPENAI_API_KEY")
