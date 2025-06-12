@@ -308,19 +308,21 @@ def get_chat_response(query, collection_name, vector_store):
 IMPORTANT INSTRUCTIONS:
 1. FIRST, check if the answer exists in the provided context below
 2. If the answer IS in the context: Answer based on the context and include page references
-3. If the answer is NOT in the context: Clearly state that the information is not in the document, then provide a short answer using your general knowledge
+3. If the answer is NOT in the context: Clearly state that the information is not in the document, then provide a SHORT ONE-SENTENCE answer using your general knowledge
 4. If the query is regarding programming always try giving an example for better understanding.
 
 Guidelines:
-- Be concise but comprehensive
-- If the query is about programming, always provide examples
+- Be concise but comprehensive for document-based answers
+- For out-of-context answers: Keep it to ONE SENTENCE only
+- If the query is about programming, always provide examples (for document-based answers)
 - If you're uncertain about your general knowledge, acknowledge it
 
 Context from the document:
 {context}
 
-Remember: You MUST answer the user's question. If it's not in the document, use your general knowledge!
+Remember: You MUST answer the user's question. If it's not in the document, use your general knowledge but keep it to ONE SENTENCE!
 """
+
         
         # Generate response
         llm = ChatGoogleGenerativeAI(
